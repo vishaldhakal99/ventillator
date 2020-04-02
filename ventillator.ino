@@ -1,5 +1,4 @@
-
-#define area 100;
+int area=100;
 
 int solenoidPin1 = 4;
 int solenoidPin2 = 5;//This is the output pin on the Arduino we are using
@@ -24,12 +23,12 @@ void loop(){
   flowRate = (count * 2.25);        //Take counted pulses in the last second and multiply by 2.25mL 
   flowRate = flowRate * 60;         //Convert seconds to minutes, giving you mL / Minute
   flowRate = flowRate / 1000;
-  float peakPressure = 40;
-  float peep = 5;
+  float peakPressure = 40.0;
+  float peep = 5.0;
   float pressure_val;
   float timee;
-  float voloume_in = flowRate*area*timee;
-  float voloume_out = flowRate*area*timee;
+  double voloume_in = flowRate * area * timee;
+  double voloume_out = flowRate * area * timee;
   if(voloume_in<=voloume_out){
     pressure_val = (analogRead(A0) * (5.0 / 1023.0) * 10.0);
   
