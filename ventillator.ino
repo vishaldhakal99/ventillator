@@ -2,7 +2,7 @@
 #define area 100;
 
 int solenoidPin1 = 4;
-int solenoidPin1 = 5;//This is the output pin on the Arduino we are using
+int solenoidPin2 = 5;//This is the output pin on the Arduino we are using
 int flowPin = 2;    //This is the input pin on the Arduino
 double flowRate;    //This is the value we intend to calculate. 
 volatile int count; //This integer needs to be set as volatile to ensure it updates correctly during the interrupt process. 
@@ -24,8 +24,8 @@ void loop(){
   flowRate = (count * 2.25);        //Take counted pulses in the last second and multiply by 2.25mL 
   flowRate = flowRate * 60;         //Convert seconds to minutes, giving you mL / Minute
   flowRate = flowRate / 1000;
-  float peakPressure;
-  float peep;
+  float peakPressure = 40;
+  float peep = 5;
   float pressure_val;
   float timee;
   float voloume_in = flowRate*area*timee;
@@ -40,6 +40,7 @@ void loop(){
     }else{
       while (pressure_val < peep) {
         pressure_val = (analogRead(A0) * (5.0 / 1023.0) * 10.0);
+        Serial.println(pressure_val);
         // loop  to read pressure value until reach required  pressure with analog input A0
       }
       digitalWrite(solenoidPin1, HIGH);    //Switch Solenoid valve1 open
